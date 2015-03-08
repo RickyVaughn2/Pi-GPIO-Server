@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-8 pins-controls">
+        <div class="page-header">
+            <h2>Controls</h2>
+        </div>
+        <div class="row">
+            <div ng-repeat="p in Pin.list" class="col-md-6 pin">
+                <div ng-if="p.event == null" class="panel panel-default ">
+                    <div class="panel-heading">
+                        <h3 ng-if="p.name" class="panel-title">{{ p.name }}</h3>
+                        <h3 ng-if="!p.name" class="panel-title">{{ p.num }}: {{ p.mode }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div ng-if="p.event == null" class="btn-toolbar">
+                            <a ng-if="p.value == 0" ng-click="Pin.turnOn( p.num )" class="btn btn-lg btn-block btn-success">Turn ON</a>
+                            <a ng-if="p.value == 1" ng-click="Pin.turnOff( p.num )" class="btn btn-lg btn-block btn-danger">Turn OFF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 pin-events">
+        <div class="page-header">
+            <h2>Events</h2>
+        </div>
+        <ul class="list-unstyled">
+            <li ng-if="Events.list.length > 0" ng-repeat="e in Events.list">
+                <div ng-if="e.name" class="alert alert-info">
+                    <strong>{{ e.name }}</strong> - {{ e.event }} @ {{ e.date | date: 'mediumTime'}}
+                </div>
+                <div ng-if="!e.name" class="alert alert-info">
+                    <strong>Pin: {{ e.num }}</strong> - {{ e.event }} @ {{ e.date | date: 'mediumTime'}}
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
